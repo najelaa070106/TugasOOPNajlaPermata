@@ -1,21 +1,35 @@
-﻿using System;
+using System;
 
 namespace TugasOOP
 {
+    // class dengan inheritance
     public class Drink : MenuItem
     {
-        public bool IsDingin { get; set; }
+        // encapsulation
+        private bool _isDingin;
 
-        public Drink(string _namaMenu, double _harga, bool _isDingin)
-            : base(_namaMenu, _harga)
+        public bool GetIsDingin()
         {
-            IsDingin = _isDingin;
+            return _isDingin;
         }
 
+        public void SetIsDingin(bool isDingin)
+        {
+            _isDingin = isDingin;
+        }
+
+        // constructor
+        public Drink(string _namaMenu, decimal _harga,int _stok, bool isDingin)
+            : base(_namaMenu, _harga, _stok)
+        {
+            _isDingin = isDingin;
+        }
+
+        // polymorphism
         public override void DisplayInfo()
         {
-            string _tipe = IsDingin ? "Dingin" : "Panas";
-            Console.WriteLine(NamaMenu + (_tipe) + " - Rp " + Harga);
+            string _tipe = _isDingin ? "Dingin" : "Panas";
+            Console.WriteLine("Minuman : " + GetNamaMenu() + " (" + _tipe + ") - Rp " + GetHarga());
         }
     }
 }
